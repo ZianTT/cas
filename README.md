@@ -1,55 +1,51 @@
-# IMPORTANT NOTE<br/>******************************************************<br/>This repository is always automatically generated from the CAS Initializr. Do NOT submit pull requests here as the change-set will be overwritten on the next sync.To learn more, please visit the [CAS documentation](https://apereo.github.io/cas).<br/>******************************************************<br/>
-Apereo CAS WAR Overlay Template
+Apereo CAS WAR Overlay 模板
 =====================================
 
-WAR Overlay Type: `cas-overlay`
+WAR Overlay 类型: `cas-overlay`
 
-# Versions
+# 版本
    
 
 - CAS Server `6.6.0-SNAPSHOT`
 - JDK `11`
                      
-# Build
+# 构建
 
-To build the project, use:
+要构建项目，请使用:
 
 ```bash
 # Use --refresh-dependencies to force-update SNAPSHOT versions
 ./gradlew[.bat] clean build
 ```
 
-To see what commands/tasks are available to the build script, run:
+要查看哪些命令/任务可用于构建脚本，请运行:
 
 ```bash
 ./gradlew[.bat] tasks
 ```
 
-If you need to, on Linux/Unix systems, you can delete all the existing artifacts
-(artifacts and metadata) Gradle has downloaded using:
+如果你需要，在Linux/Unix系统上，你可以删除Gradle已经下载的所有工件(artifacts和metadata):
 
 ```bash
 # Only do this when absolutely necessary
 rm -rf $HOME/.gradle/caches/
 ```
 
-Same strategy applies to Windows too, provided you switch `$HOME` to its equivalent in the above command.
+同样的策略也适用于Windows，只要您在上面的命令中将`$HOME`切换到它的等效值。
 
 # Keystore
 
-For the server to run successfully, you might need to create a keystore file.
-This can either be done using the JDK's `keytool` utility or via the following command:
+要使服务器成功运行，您可能需要创建一个keystore文件。这可以通过使用JDK的`keytool`工具或通过以下命令来完成:
 
 ```bash
 ./gradlew[.bat] createKeystore
 ```
 
-Use the password `changeit` for both the keystore and the key/certificate entries. 
-Ensure the keystore is loaded up with keys and certificates of the server.
+使用密钥存储库和密钥/证书条目的密码`changeit`。确保密钥存储库装载了服务器的密钥和证书。
 
-## Extension Modules
+## 扩展模块
 
-Extension modules may be specified under the `dependencies` block of the [Gradle build script](build.gradle):
+扩展模块可以在[Gradle构建脚本](build.gradle)的`dependencies`块中指定
 
 ```gradle
 dependencies {
@@ -58,27 +54,27 @@ dependencies {
 }
 ```
 
-To collect the list of all project modules and dependencies in the overlay:
+收集覆盖中所有项目模块和依赖项的列表:
 
 ```bash
 ./gradlew[.bat] dependencies
 ```                                                                       
 
-To see a full list of all project dependencies that are available for configuration and use:
+查看可配置和使用的所有项目依赖项的完整列表:
 
 ```bash
 curl https://localhost:8080/dependencies
 ```     
 
-Or:
+或者:
 
 ```bash
 curl https://localhost:8080/actuator/info
 ```
 
-# Deployment
+# 部署
 
-On a successful deployment via the following methods, the server will be available at:
+通过以下方法成功部署后，服务器将在运行:
 
 
 * `https://localhost:8443/cas`
@@ -86,35 +82,35 @@ On a successful deployment via the following methods, the server will be availab
 
 
   
-## Executable WAR
+## 可执行 WAR
 
-Run the server web application as an executable WAR. Note that running an executable WAR requires CAS to use an embedded container such as Apache Tomcat, Jetty, etc.
+将服务器web应用程序作为可执行的WAR运行。请注意，运行可执行的WAR需要CAS使用嵌入式容器，如Apache Tomcat、Jetty等。
 
-The current servlet container is specified as `-tomcat`.
+当前servlet容器被指定为 `-tomcat`.
 
 ```bash
 java -jar build/libs/cas.war
 ```
 
-Or via:
+或通过:
 
 ```bash
 ./gradlew[.bat] run
 ```
 
-Debug the CAS web application as an executable WAR:
+将CAS web应用程序调试为可执行的WAR:
 
 ```bash
 ./gradlew[.bat] debug
 ```
        
-Or via:
+或通过:
 
 ```bash
 java -Xdebug -Xrunjdwp:transport=dt_socket,address=5000,server=y,suspend=y -jar build/libs/cas.war
 ```
 
-Run the CAS web application as a *standalone* executable WAR:
+运行CAS web应用程序作为一个*独立的*可执行的WAR:
 
 ```bash
 ./gradlew[.bat] clean executable
@@ -122,15 +118,15 @@ Run the CAS web application as a *standalone* executable WAR:
 
 ## External
 
-Deploy the binary web application file in `build/libs` after a successful build to a servlet container of choice.
+成功构建servlet容器后，将二进制web应用程序文件部署到`build/libs`中。
 
 # Docker
 
-The following strategies outline how to build and deploy CAS Docker images.
+以下策略概述了如何构建和部署CAS Docker映像。
 
 ## Jib
 
-The overlay embraces the [Jib Gradle Plugin](https://github.com/GoogleContainerTools/jib) to provide easy-to-use out-of-the-box tooling for building CAS docker images. Jib is an open-source Java containerizer from Google that lets Java developers build containers using the tools they know. It is a container image builder that handles all the steps of packaging your application into a container image. It does not require you to write a Dockerfile or have Docker installed, and it is directly integrated into the overlay.
+覆盖包含了[Jib Gradle Plugin](https://github.com/GoogleContainerTools/jib)，以提供易于使用的开箱即用的工具，用于构建CAS docker图像。Jib是一个来自谷歌的开源Java容器器，它允许Java开发人员使用他们知道的工具构建容器。它是一个容器映像构建器，处理将应用程序打包为容器映像的所有步骤。它不需要你编写Dockerfile或安装Docker，它直接集成到覆盖中。
 
 ```bash
 # Running this task requires that you have Docker installed and running.
@@ -139,7 +135,7 @@ The overlay embraces the [Jib Gradle Plugin](https://github.com/GoogleContainerT
 
 ## Dockerfile
 
-You can also use the native Docker tooling and the provided `Dockerfile` to build and run.
+你也可以使用本地的Docker工具和提供的`Dockerfile`来构建和运行。
 
 ```bash
 chmod +x *.sh
@@ -147,16 +143,16 @@ chmod +x *.sh
 ./docker-run.sh
 ```
 
-For convenience, an additional `docker-compose.yml` is also provided to orchestrate the build:
+为方便起见，额外的`docker-compose.yml`也可被提供来协调构建:
 
 ```bash  
 docker-compose build
 ```
 
 
-# CAS Command-line Shell
+# CAS 命令行
 
-To launch into the CAS command-line shell:
+要启动到CAS命令行:
 
 ```bash
 ./gradlew[.bat] downloadShell runShell
@@ -219,12 +215,11 @@ To unzip and explode the CAS web application file and the internal resources jar
 ./gradlew[.bat] copyCasConfiguration
 ```
 
-- The specifics of the build are controlled using the `gradle.properties` file.
+- 构建的细节是使用 `gradle.properties` 文件控制的.
 
-## Configuration Metadata
+## 配置metadata
 
-Configuration metadata allows you to export collection of CAS properties as a report into a file 
-that can later be examined. You will find a full list of CAS settings along with notes, types, default and accepted values:
+配置metadata允许您将CAS属性集合作为报告导出到一个文件中，以便稍后进行检查。你会发现一个完整的CAS设置列表，以及注释、类型、默认值和接受值:
 
 ```bash
 ./gradlew exportConfigMetadata
